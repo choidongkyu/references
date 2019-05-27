@@ -1,0 +1,158 @@
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" 프로그램 기본 설정
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"vim하단에 상태 표시줄
+set laststatus=2
+set statusline=%<%F%h%m%r%h%w%y\ %{strftime(\"%Y/%m/%d-%H:%M\")}%=\ col:%c%V\ ascii:%b\ pos:%o\ lin:%l\,%L\ %P
+" 오리지널 Vi 와의 호환성을 없애고, Vim 만의 기능들을 쓸 수 있게 함.
+set nocp
+" 명령어 기록을 남길 갯수 지정
+set hi=1000
+" 백스페이스 사용
+set bs=indent,eol,start
+"파일확장자에 따른 차별 옵션 적용
+filetype on 
+au FileType c,cpp,cs,html,css,php,php4,jsp,java set nu
+au FileType html set ts=4
+au FileType python set nu
+" UTF-8, euc-kr 한글문서 그냥 열기
+if v:lang =~ "^ko"
+set encoding=cp949
+set fileencodings=utf-8,cp949
+set guifontset=-*-*-medium-r-normal--16-*-*-*-*-*-*-*
+elseif v:lang =~ "^ja_JP"
+set fileencodings=euc-jp
+set guifontset=-misc-fixed-medium-r-normal--14-*-*-*-*-*-*-*
+elseif v:lang =~ "^zh_TW"
+set fileencodings=big5
+set guifontset=-sony-fixed-medium-r-normal--16-150-75-75-c-80-iso8859-1,-taipei-fixed-medium-r-normal--16-150-75-75-c-160-big5-0
+elseif v:lang =~ "^zh_CN"
+set fileencodings=gb2312
+set guifontset=*-r-*
+endif
+if v:lang =~ "utf8$" || v:lang =~ "UTF-8$"
+set encoding=utf-8
+set fileencodings=utf-8,cp949
+endif
+set hlsearch 
+"set autowrite " 다른 파일로 넘어갈 때 자동 저장
+set autoread " 작업 중인 파일 외부에서 변경됬을 경우 자동으로 불러옴
+" 커서의 위치를 항상 보이게 함.
+set ru
+" 탭 크기 설정
+" 탭 길이
+set ts=8
+set shiftwidth=4
+" 들여쓰기 탭 간격
+set sts=4
+set sw=4
+" 탭 -> 공백 변환 기능 (사용 안함)
+set noet
+" set sts=0
+" 마지막 편집 위치 복원 기능
+" VimTip 80: Restore cursor to file position in previous editing session
+" for unix/linux/solaris
+set viminfo='10,\"100,:20,%,n~/.viminfo
+
+" only for windows [give some path to store the line number info]
+"set viminfo='10,\"100,:20,%,nc:\\Winnt\\_viminfo
+au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
+" magic 기능 사용
+"set magic
+" 여러가지 이동 동작시 줄의 시작으로 자동 이동
+"set sol
+" 비주얼 모드에서의 동작 설정
+"set sel=exclusive
+" 사용자 괄호 찾기를 사용한다.
+"set mps+=<:>
+" 검색어 강조 기능
+set hls
+" 똑똑한 대소문자 구별 기능 사용
+set scs
+" 파일 형식에 따른 Syntax Highlighting 기능을 켠다
+syntax on
+"" 자동 들여쓰기를 한다.
+set smartindent
+" 좌표표시
+set ruler
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" 모양 설정
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" 추적 수준을 최대로
+"set report=0
+" 항상 status 라인을 표시하도록 함.
+"set ls=2
+" 똑똑한 들여쓰기
+set si
+" 자동 들여쓰기
+set ai
+" C언어 자동 들여쓰기 옵션
+set cindent
+" ======================================================================
+" 폴더 설정이 되어 있는 파일을 열었을때 폴더 되어 있는 레벨을 설정한다.
+" 기본값 0이고 모두 폴딩된다. 
+" ======================================================================
+"set fdl=1
+" ======================================================================
+" 소스파일이 폴딩 되어 있을때 폴딩범위를 보여주는 컬럼의 수를 설정한다.
+" ======================================================================
+"set fdc=3
+" ===================================================================
+" 닫는 괄호")", 브라켓"}"을 입력시 매칭되는 여는 괄호, 브라켓에 잠시
+" 커서가 위치했다가 다시 제자리로 돌아 온다.
+" ======================================================================
+"set showmatch
+" 기본 vim 색상 패턴
+"color desert
+"붙여넣기시 들여쓰기 여부 선택
+"Ins키로 paste상태와 nopaste상태 전환
+"set pastetoggle=<Ins>
+" ======================================================================
+" Key Maping
+" 컴파일러 연결
+" ======================================================================
+" 컴파일
+map <F2> : ls<CR>
+map <F3> : bn<CR>
+map <F4> : bp<CR>
+map <F5> : NERDTreeToggle<CR>
+"map <F6> : NERDTreeClose<CR>
+"map <F7> : norm i//<CR>
+"map <F8> : norm xx<CR>
+"map <F9> : !qmake -project && qmake && make<CR>
+"map <F10> :
+map <F11> : bd
+map <F12> : qa!<CR>
+"
+"" 실행
+"if has("gui_running")
+" 
+" map <F3> : !%<
+"
+" elseif has("unix")
+"
+" map <F3> : !./%<
+"
+"endif
+"au FileType c map <F2> : !gcc % -o %<
+"au FileType c map <F3> : !%<
+"au FileType cs map <F2> : !mcs %
+"au FileType cs map <F3> : !mono %<.exe
+
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+    " 추가
+    Plugin 'VundleVim/Vundle.vim'
+    Plugin 'scrooloose/nerdtree'
+    Plugin 'scrooloose/syntastic'
+    Plugin 'vim-airline/vim-airline'
+    Plugin 'nanotech/jellybeans.vim'
+    Plugin 'ctrlpvim/ctrlp.vim'
+call vundle#end()
+colorscheme jellybeans
+
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\.git$\|public$\|log$\|tmp$\|out$',
+  \ 'file': '\v\.(exe|so|dll|swp|o)$'
+\ }
