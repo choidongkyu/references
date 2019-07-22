@@ -123,7 +123,7 @@ function adbcon()
 {
     adb disconnect
     sleep 1
-    adb connect 192.168.50.$1
+    adb connect 192.168.10.$1
     sleep 1
     adb remount
 }
@@ -138,4 +138,14 @@ function envsetup()
 function updateskb()
 {
 	adb push $ANDROID_BUILD_TOP/vendor/synaptics/aistb2/build/aosp_aistb2_innopia/release/signed/update.zip /cache/update.zip && adb shell "echo --update_package=/cache/update.zip >/cache/recovery/command" && adb shell reboot recovery
+}
+
+function addr2line()
+{
+    arm-linux-androideabi-addr2line -e $ANDROID_PRODUCT_OUT/symbols$2 $1
+}
+
+function networkstart()
+{
+    /etc/init.d/networking restart
 }
