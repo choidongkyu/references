@@ -1,0 +1,159 @@
+CTAG_S_BR_OR="\x1b[0;33m"
+CTAG_S_CYAN="\x1b[1;36m"
+CTAG_S_LPURPLE="\x1b[1;35m"
+CTAG_S_Y="\x1b[1;33m"
+CTAG_S_LR="\x1b[1;31m"
+CTAG_S_LG="\x1b[1;32m"
+CTAG_S_LB="\x1b[1;34m"
+CTAG_E="\x1b[0m"
+
+BRANCH_NAME=""
+CHK_BR_ST="0"
+CHK_BR_PULL="0"
+MANUFACTURER_P="0"
+SKTCOMMONPREBUILTS=0
+BR_SKT_NUGU_CALL=0
+
+function check_st_or_checkout
+(
+	if [ "$CHK_BR_PULL" == 1 ] ;then
+		git pull
+	elif [ "$CHK_BR_ST" == 1 ] ;then
+		#RES=`git branch | grep "*" --color=always`
+		RES=`git branch | grep "*"`
+		if [[ "$RES" =~ "call" ]] ; then	
+			echo -e "${CTAG_S_Y}$RES ${CTAG_E}"		
+		else
+			echo -e "${CTAG_S_LR}$RES ${CTAG_E}"	
+		fi
+	else
+		if [ "$SKTCOMMONPREBUILTS" == "1" ]  ; then
+			BRANCH_NAME=`echo $BRANCH_NAME | sed s/"dev\/"//g`
+		fi
+		
+		if [ "$BR_SKT_NUGU_CALL" == "1" ]  ; then		
+			if [[ "$BRANCH_NAME" =~ "call" ]] ; then	
+				if [ "$MANUFACTURER_P" == "1" ];then
+					git co BID-AI100_5.0.2_skt_call_solution
+				else
+					git co BIP-AI100_5.0.2_skt_call_solution
+				fi
+			else
+				git co $BRANCH_NAME				
+			fi
+		else
+			git co $BRANCH_NAME		
+		fi
+	fi
+)
+
+if [ ! $1 ] ; then
+		echo -e "${CTAG_S_LR}\nNo Arg (@ar1, 0:dev,  1:nugu call branch)${CTAG_E}"		
+        exit
+fi
+
+
+if [[ "$PWD" =~ "BIP" ]];then
+	MANUFACTURER_P=1
+else
+	MANUFACTURER_P=0
+fi
+
+##################################
+#cytest
+#echo "[]MANUFACTURER_P]  $MANUFACTURER_P   !!"
+#exit
+#############################
+
+	
+if [ "$1" == "0" ] ;then
+	if [ "$MANUFACTURER_P" == "1" ];then
+		BRANCH_NAME="dev/BIP-AI100_5.0.2"
+	else
+		BRANCH_NAME="dev/BID-AI100_5.0.2"
+	fi
+elif [ "$1" == "1" ] ;then
+	BRANCH_NAME="skt_call_solution"
+elif [ "$1" == "s" ] ;then	
+	CHK_BR_ST=1
+elif [ "$1" == "p" ] ;then		
+	CHK_BR_PULL=1
+else	
+	echo -e "${CTAG_S_LR}\nInvalid Arg (@ar1, 0:dev,  1:nugu call branch)${CTAG_E}"		
+	exit
+fi
+
+
+echo -e "${CTAG_S_CYAN}\n[device/synaptics/aistb2]${CTAG_E} \n"
+cd device/synaptics/aistb2
+check_st_or_checkout
+cd -
+
+echo -e "${CTAG_S_CYAN}\n[device/synaptics/sequoia]${CTAG_E} \n"
+cd device/synaptics/sequoia
+check_st_or_checkout
+cd -
+
+echo -e "${CTAG_S_CYAN}\n[frameworks/av]${CTAG_E} \n"
+cd frameworks/av
+check_st_or_checkout
+cd -
+
+echo -e "${CTAG_S_CYAN}\n[frameworks/base]${CTAG_E} \n"
+cd frameworks/base
+check_st_or_checkout
+cd -
+
+echo -e "${CTAG_S_CYAN}\n[frameworks/support]${CTAG_E} \n"
+cd frameworks/support
+check_st_or_checkout
+cd -
+
+echo -e "${CTAG_S_CYAN}\n[hardware/libhardware]${CTAG_E} \n"
+cd hardware/libhardware
+check_st_or_checkout
+cd -
+
+echo -e "${CTAG_S_CYAN}\n[system/media]${CTAG_E} \n"
+cd system/media
+check_st_or_checkout
+cd -
+
+echo -e "${CTAG_S_CYAN}\n[vendor/synaptics/common]${CTAG_E} \n"
+cd vendor/synaptics/common
+check_st_or_checkout
+cd -
+
+echo -e "${CTAG_S_CYAN}\n[vendor/mw/sptek]${CTAG_E} \n"
+cd vendor/mw/sptek
+check_st_or_checkout
+cd -
+
+if [ "$MANUFACTURER_P" == "1" ];then
+	echo -e "${CTAG_S_CYAN}\n[vendor/innopia]${CTAG_E} \n"
+	cd vendor/innopia
+	check_st_or_checkout
+	cd -
+else
+	echo -e "${CTAG_S_CYAN}\n[vendor/intek]${CTAG_E} \n"
+	cd vendor/intek
+	check_st_or_checkout
+	cd -	
+fi
+
+echo -e "${CTAG_S_CYAN}\n[vendor/skb/prebuilts/sptek_device-control-app]${CTAG_E} \n"
+cd vendor/skb/prebuilts/sptek_device-control-app
+SKTCOMMONPREBUILTS=1
+check_st_or_checkout
+SKTCOMMONPREBUILTS=0
+cd -
+
+echo -e "${CTAG_S_CYAN}\n[vendor/skb/prebuilts/skt_nugu]${CTAG_E} \n"
+cd vendor/skb/prebuilts/skt_nugu
+SKTCOMMONPREBUILTS=1
+BR_SKT_NUGU_CALL=1
+check_st_or_checkout
+BR_SKT_NUGU_CALL=0
+SKTCOMMONPREBUILTS=0
+cd -
+
