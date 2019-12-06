@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:id="@+id/app_game_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="65dp"
+        android:layout_marginTop="124.5dp"
+        android:clipChildren="false"
+        android:clipToPadding="false">
+
+        <TextView
+            android:id="@+id/txt_app_game_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:lineSpacingExtra="12.5sp"
+            android:text="AppsGame"
+            android:textSize="40sp" />
+
+    </RelativeLayout>
+
+
+    <!--Recommended Apps row-->
+
+    <RelativeLayout
+        android:id="@+id/app_game_content_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="202dp">
+
+        <RelativeLayout
+            android:id="@+id/recommend_apps_list_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clipChildren="false"
+            android:clipToPadding="false">
+
+            <TextView
+                android:id="@+id/txt_recommend_apps_list_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="65dp"
+                android:letterSpacing="0.03"
+                android:lineSpacingExtra="63.8sp"
+                android:text="Recommended Apps"
+                android:textSize="15sp" />
+
+
+            <!--<RecyclerView
+                android:id="@+id/recommend_apps_list_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="99dp"
+                android:layout_below="@+id/txt_recommend_apps_list_title"
+                android:layout_marginLeft="52dp"
+                android:layout_marginTop="10dp">
+            </RecyclerView>-->
+
+        </RelativeLayout>
+
+        <!--Apps row-->
+        <RelativeLayout
+            android:id="@+id/apps_list_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/recommend_apps_list_container"
+            android:layout_marginTop="33.5dp"
+            android:clipChildren="false"
+            android:clipToPadding="false">
+
+            <TextView
+                android:id="@+id/txt_apps_list_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="65dp"
+                android:letterSpacing="0.03"
+                android:lineSpacingExtra="63.8sp"
+                android:text="Apps"
+                android:textSize="15sp" />
+
+
+            <!--<RecyclerView
+                android:id="@+id/apps_list_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="99dp"
+                android:layout_below="@+id/txt_apps_list_title"
+                android:layout_marginLeft="52dp"
+                android:layout_marginTop="10dp">
+            </RecyclerView>-->
+
+        </RelativeLayout>
+
+        <!--Games row-->
+        <RelativeLayout
+            android:id="@+id/games_list_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/apps_list_container"
+            android:layout_marginTop="33.5dp"
+            android:clipChildren="false"
+            android:clipToPadding="false">
+
+            <TextView
+                android:id="@+id/txt_game_list_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="65dp"
+                android:letterSpacing="0.03"
+                android:lineSpacingExtra="63.8sp"
+                android:text="Games"
+                android:textSize="15sp" />
+
+
+            <!--<RecyclerView
+                android:id="@+id/games_list_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="99dp"
+                android:layout_below="@+id/txt_game_list_title"
+                android:layout_marginLeft="52dp"
+                android:layout_marginTop="10dp">
+            </RecyclerView>-->
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/bottom_container"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/games_list_container"
+            android:layout_marginTop="208dp"
+            android:clipChildren="false"
+            android:clipToPadding="false" />
+    </RelativeLayout>
+</RelativeLayout>

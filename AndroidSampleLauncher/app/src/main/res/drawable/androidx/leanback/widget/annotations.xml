@@ -1,0 +1,5 @@
+<root>
+    <item name='androidx.leanback.widget.OnChildViewHolderSelectedListener'>
+        <annotation name='java.lang.Deprecated' />
+    </item>
+</root>
