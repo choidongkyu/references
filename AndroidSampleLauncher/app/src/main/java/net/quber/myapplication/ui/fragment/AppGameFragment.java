@@ -3,10 +3,8 @@ package net.quber.myapplication.ui.fragment;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.ComponentInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -24,7 +22,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class AppGameFragment extends Fragment {
@@ -48,7 +45,7 @@ public class AppGameFragment extends Fragment {
         //View view = inflater.inflate(R.layout.fragment_appsgame, null, false);
 
         //TEST CODE --> start
-        View view = inflater.inflate(R.layout.fragment_appsgame2, null, false);
+        View view = inflater.inflate(R.layout.fragment_appsgame, null, false);
         mGridView = view.findViewById(R.id.gridView1);
 
         MyAdapter adapter = new MyAdapter (
