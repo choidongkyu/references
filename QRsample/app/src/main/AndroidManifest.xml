@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="net.quber.qrsample">
+    <!--android:sharedUserId="android.uid.system"-->
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+
+    <application
+        android:name="net.quber.qrsample.Application"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true">
+
+        <activity android:name="net.quber.qrsample.BaseActivity">
+            <intent-filter>
+                <action android:name="activities.BaseActivity" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name="net.quber.qrsample.FindCabledScanner">
+            <intent-filter>
+                <action android:name="activities.FindCabledScanner" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name="net.quber.qrsample.ActiveScannerActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <meta-data android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED"
+                android:resource="@xml/device_filter" />
+        </activity>
+
+        <activity
+            android:name="net.quber.qrsample.ScannersActivity">
+            <intent-filter>
+                <action android:name="activities.ScannersActivity" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <receiver
+            android:name="net.quber.external.zebra.receivers.NotificationsReceiver"
+            android:enabled="true"
+            android:exported="false">
+            <intent-filter>
+
+                <!-- Actions to be handled should be registered here -->
+                <action android:name="com.zebra.scannercontrol.connected" />
+                <action android:name="com.zebra.scannercontrol.disconnected" />
+                <action android:name="com.zebra.scannercontrol.available" />
+                <action android:name="com.zebra.scannercontrol.conn.failed" />
+                <action android:name="com.zebra.scannercontrol.barcode.received" />
+                <action android:name="com.zebra.scannercontrol.image.received" />
+                <action android:name="com.zebra.scannercontrol.video.received" />
+            </intent-filter>
+        </receiver>
+
+
+    </application>
+
+</manifest>
