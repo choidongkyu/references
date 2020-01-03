@@ -1,7 +1,5 @@
 package net.quber.myapplication.ui.fragment;
 
-import android.content.Context;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -20,7 +18,6 @@ import java.util.HashMap;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 import androidx.leanback.app.HeadersSupportFragment;
 import androidx.leanback.widget.ArrayObjectAdapter;
 import androidx.leanback.widget.ListRow;
@@ -32,17 +29,21 @@ import androidx.leanback.widget.VerticalGridView;
 public class CustomHeadersFragment extends HeadersSupportFragment {
 
     private static final String TAG = "CustomHeadersFragment";
+
     private ArrayObjectAdapter mHeaderAdapter;
     private ArrayList<String> mHeaderTitle;
     private HashMap<String, Integer> mHeaderItem;
 
     private VideoRowsFragment mVideoRowsFragment;
     private AppGameFragment mAppGameFragment;
+    private PictureFragment mPictureFragment;
 
-    private final String MENU_CATEGORY[] = {
+    public static final int TRANSACTION_DELAY = 300;
+
+    public static final String MENU_CATEGORY[] = {
             "Video",
-            "Apps & game",
-            "Preference",
+            "Apps",
+            "Picture & Image",
             "Setting",
     };
 
@@ -60,6 +61,7 @@ public class CustomHeadersFragment extends HeadersSupportFragment {
         mHeaderItem = new HashMap<String, Integer>();
         mVideoRowsFragment = new VideoRowsFragment();
         mAppGameFragment = new AppGameFragment();
+        mPictureFragment = new PictureFragment();
 
         for (int i = 0; i < MENU_CATEGORY.length; i++) {
             mHeaderTitle.add(MENU_CATEGORY[i]);
@@ -95,15 +97,11 @@ public class CustomHeadersFragment extends HeadersSupportFragment {
             }
         });
 
-        VerticalGridView gridView = getVerticalGridView(this);
-
-
+        VerticalGridView gridView = getVerticalGridView();
         gridView.setOnChildSelectedListener(new OnChildSelectedListener() {
             @Override
             public void onChildSelected(ViewGroup parent, View view, int position, long id) {
                 Object obj = ((ListRow) getAdapter().get(position)).getAdapter().get(0);
-                Log.d(TAG, "obj는 string인가? = " + (obj instanceof String));
-                //((MainActivity) getActivity()).getfragmentManager().beginTransaction().replace(R.id.rows_container,(Fragment) obj).commit();
                 transFragment((String) obj);
             }
         });
@@ -150,34 +148,17 @@ public class CustomHeadersFragment extends HeadersSupportFragment {
         }
     }
 
-    public VerticalGridView getVerticalGridView(Fragment fragment) {
-        try {
-            Class baseRowSupportFragmentClass = getActivity().getClassLoader().loadClass("androidx.leanback.app.BaseRowSupportFragment");
-            Method getVerticalGridViewMethod = baseRowSupportFragmentClass.getDeclaredMethod("getVerticalGridView", (Class<?>[]) null);
-            getVerticalGridViewMethod.setAccessible(true);
-            VerticalGridView gridView = (VerticalGridView) getVerticalGridViewMethod.invoke(fragment, (Object[]) null);
-            return gridView;
-
-        } catch (NoSuchMethodException e) {
-            e.printStackTrace();
-        } catch (InvocationTargetException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
 
     private void transFragment(String obj) {
         switch (obj) {
-            case "Video":
+            case "Video" :
                 ((MainActivity) getActivity()).getfragmentManager().beginTransaction().replace(R.id.rows_container, mVideoRowsFragment).commit();
                 break;
-            case "Apps & game":
+            case "Apps":
                 ((MainActivity) getActivity()).getfragmentManager().beginTransaction().replace(R.id.rows_container, mAppGameFragment).commit();
+                break;
+            case "Picture & Image" :
+                ((MainActivity) getActivity()).getfragmentManager().beginTransaction().replace(R.id.rows_container, mPictureFragment).commit();
                 break;
             default:
                 Log.d(TAG, "not exist fragment");

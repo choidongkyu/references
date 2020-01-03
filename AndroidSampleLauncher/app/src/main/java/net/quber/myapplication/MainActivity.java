@@ -14,25 +14,14 @@
 
 package net.quber.myapplication;
 
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.view.ViewGroup;
 
-import net.quber.myapplication.ui.fragment.AppGameFragment;
 import net.quber.myapplication.ui.fragment.CustomHeadersFragment;
-import net.quber.myapplication.ui.fragment.VideoRowsFragment;
-
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-
-import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.leanback.widget.ListRow;
-import androidx.leanback.widget.OnChildSelectedListener;
-import androidx.leanback.widget.VerticalGridView;
 
 
 /*
@@ -45,13 +34,11 @@ public class MainActivity extends FragmentActivity {
     private CustomHeadersFragment mHeadersFragment;
     private FragmentManager mFragmentManager;
 
-    private Fragment currentFragment;
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        Log.d(TAG,"getrequested orientation = "+getRequestedOrientation());
         mHeadersFragment = new CustomHeadersFragment();
 
 
@@ -59,11 +46,6 @@ public class MainActivity extends FragmentActivity {
         FragmentTransaction transaction = mFragmentManager.beginTransaction();
         transaction.replace(R.id.header_container, mHeadersFragment,"CustomHeadersFragment");
         transaction.commit();
-    }
-
-
-    public void updateCurrentFragment(Fragment fragment) {
-        currentFragment = fragment;
     }
 
     public FragmentManager getfragmentManager (){

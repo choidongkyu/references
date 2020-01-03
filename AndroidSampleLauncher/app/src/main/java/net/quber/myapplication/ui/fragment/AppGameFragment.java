@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,6 +28,7 @@ import java.util.List;
 public class AppGameFragment extends Fragment {
 
     private Context mContext;
+    MyAdapter mAdapter;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -48,11 +50,17 @@ public class AppGameFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_appsgame, null, false);
         mGridView = view.findViewById(R.id.gridView1);
 
-        MyAdapter adapter = new MyAdapter (
+        mAdapter = new MyAdapter (
                 getContext(),
                 R.layout.icon,
                 mResolveInfo);
-        mGridView.setAdapter(adapter);
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                mGridView.setAdapter(mAdapter);
+            }
+        },CustomHeadersFragment.TRANSACTION_DELAY); // Fragment 이동시마다 버벅임이 있어 강제로 250ms delay를 줌, 좋은 방법이 있다면 로직 수정할 예정
         mGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
@@ -154,6 +162,5 @@ public class AppGameFragment extends Fragment {
         }
     }
     //TEST CODE <-- end
-
 
 }
