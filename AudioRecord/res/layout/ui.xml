@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:orientation="vertical"
+    android:background="@drawable/background_01">
+
+
+    <LinearLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+
+        <View
+            android:layout_width="650px"
+            android:layout_height="140px" />
+
+
+
+        <!--<ImageView
+            android:id="@+id/Recording"
+            android:layout_width="190px"
+            android:layout_height="140px"
+            app:srcCompat="@drawable/img_recording"/>-->
+        <Space
+            android:layout_width="120px"
+            android:layout_height="140px">
+        </Space>
+
+        <Button
+            android:paddingTop="15px"
+            android:layout_marginTop="12px"
+            android:textSize="40px"
+            android:textColor="@color/colorPrimary"
+            android:textStyle="italic"
+            android:id="@+id/btn_play"
+            android:layout_width="170px"
+            android:layout_height="110px"
+            android:background="@android:color/transparent"
+            android:focusable="true"
+            android:text="PLAY" />
+
+
+        <Button
+            android:paddingTop="15px"
+            android:layout_marginTop="12px"
+            android:textSize="40px"
+            android:textColor="@color/colorPrimary"
+            android:textStyle="italic"
+            android:background="@android:color/transparent"
+            android:id="@+id/btn_setting"
+            android:layout_width="190px"
+            android:layout_height="110px"
+            android:focusable="true"
+            android:text="SETTING" />
+
+        <Space
+            android:layout_width="200px"
+            android:layout_height="140px">
+        </Space>
+
+
+
+
+        <ImageView
+            android:id="@+id/Record"
+            android:layout_width="150px"
+            android:layout_height="140px"
+            app:srcCompat="@drawable/img_record_default" />
+
+        <Button
+            android:id="@+id/btn_record"
+            android:layout_width="126px"
+            android:layout_height="140px"
+            android:focusable="true"
+            android:nextFocusLeft="@id/Record"
+            android:background="@drawable/recordbutton" />
+
+        <ImageView
+            android:id="@+id/Stop"
+            android:layout_width="120px"
+            android:layout_height="140px"
+            app:srcCompat="@drawable/img_stop_activation" />
+
+        <Button
+            android:id="@+id/btn_stop"
+            android:layout_width="126px"
+            android:layout_height="140px"
+            android:focusable="true"
+            android:background="@drawable/stopbutton" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="908px"
+        android:orientation="vertical"
+        android:layout_marginHorizontal="9px"
+        android:layout_marginTop="22px"
+        android:gravity="center_vertical"
+        >
+        <LinearLayout
+            android:id="@+id/linear1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="10px">
+            <TextView
+                android:id="@+id/Mic1"
+                android:layout_width="51px"
+                android:layout_height="110px"
+                android:text="MIC1"
+                android:textColor="#ffffff"
+                android:textSize="10sp"
+                android:gravity="center"/>
+            <net.quber.waveformview.WaveFormView
+                android:id="@+id/wave_form_view"
+                android:layout_width="1840px"
+                android:layout_height="110px"
+                android:background="@color/colorWaveBackground"
+                android:layout_gravity="center"
+                app:wf_waveform_color="@color/colorPrimaryDark"
+                app:wf_waveform_max_scale="3"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linear2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="10px">
+            <TextView
+                android:id="@+id/Mic2"
+                android:layout_width="51px"
+                android:layout_height="110px"
+                android:text="MIC2"
+                android:textColor="#ffffff"
+                android:textSize="10sp"
+                android:gravity="center"/>
+            <net.quber.waveformview.WaveFormView
+                android:id="@+id/wave_form_view2"
+                android:layout_width="1840px"
+                android:layout_height="110px"
+                android:background="@color/colorWaveBackground"
+                android:layout_gravity="center"
+                app:wf_waveform_color="@color/colorPrimaryDark"
+                app:wf_waveform_max_scale="3"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linear3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="10px">
+            <TextView
+                android:id="@+id/Mic3"
+                android:layout_width="51px"
+                android:layout_height="110px"
+                android:text="MIC3"
+                android:textColor="#ffffff"
+                android:textSize="10sp"
+                android:gravity="center"/>
+            <net.quber.waveformview.WaveFormView
+                android:id="@+id/wave_form_view3"
+                android:layout_width="1840px"
+                android:layout_height="110px"
+                android:background="@color/colorWaveBackground"
+                android:layout_gravity="center"
+                app:wf_waveform_color="@color/colorPrimaryDark"
+                app:wf_waveform_max_scale="3"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linear4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="10px">
+            <TextView
+                android:id="@+id/Mic4"
+                android:layout_width="51px"
+                android:layout_height="110px"
+                android:text="MIC4"
+                android:textColor="#ffffff"
+                android:textSize="10sp"
+                android:gravity="center"/>
+
+            <net.quber.waveformview.WaveFormView
+                android:id="@+id/wave_form_view4"
+                android:layout_width="1840px"
+                android:layout_height="110px"
+                android:background="@color/colorWaveBackground"
+                android:layout_gravity="center"
+                app:wf_waveform_color="@color/colorPrimaryDark"
+                app:wf_waveform_max_scale="3"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linear5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="10px">
+            <TextView
+                android:id="@+id/Ref1"
+                android:layout_width="51px"
+                android:layout_height="110px"
+                android:text="Ref1"
+                android:textColor="#ffffff"
+                android:textSize="10sp"
+                android:gravity="center"/>
+            <net.quber.waveformview.WaveFormView
+                android:id="@+id/wave_form_view5"
+                android:layout_width="1840px"
+                android:layout_height="110px"
+                android:background="@color/colorWaveBackground"
+                android:layout_gravity="center"
+                app:wf_waveform_color="@color/colorPrimaryDark"
+                app:wf_waveform_max_scale="3"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linear6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="10px">
+            <TextView
+                android:id="@+id/Ref2"
+                android:layout_width="51px"
+                android:layout_height="110px"
+                android:text="Ref2"
+                android:textColor="#ffffff"
+                android:textSize="10sp"
+                android:gravity="center"/>
+            <net.quber.waveformview.WaveFormView
+                android:id="@+id/wave_form_view6"
+                android:layout_width="1840px"
+                android:layout_height="110px"
+                android:background="@color/colorWaveBackground"
+                android:layout_gravity="center"
+                app:wf_waveform_color="@color/colorPrimaryDark"
+                app:wf_waveform_max_scale="3"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="10px">
+
+            <TextView
+                android:id="@+id/Out"
+                android:layout_width="51px"
+                android:layout_height="180px"
+                android:gravity="center"
+                android:text="OUT"
+                android:textColor="#ffffff"
+                android:textSize="13sp" />
+
+            <net.quber.waveformview.WaveFormView
+                android:id="@+id/wave_form_view7"
+                android:layout_width="1840px"
+                android:layout_height="180px"
+                android:layout_gravity="center"
+                android:layout_marginBottom="9px"
+                android:background="@color/colorWaveBackground"
+                app:wf_waveform_color="@color/colorPrimaryDark"
+                app:wf_waveform_max_scale="3" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

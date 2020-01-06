@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <attr name="wf_waveform_color" format="color"/>
+
+
+    <declare-styleable name="WaveFormView">
+        <attr name="wf_waveform_color"/>
+        <attr name="wf_waveform_max_scale" format="float"/>
+    </declare-styleable>
+</resources>

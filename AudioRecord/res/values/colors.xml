@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#4e4c4e</color>
+    <color name="colorPrimaryDark">#4e4c4e</color>
+    <color name="colorAccent">#ffffff</color>
+    <color name="colorWaveBackground">#444344</color>
+    <color name="colorWaveFormOutDefault">#47F047</color>
+    <color name="colorWaveFormOutRecording">#CE0606</color>
+    <color name="colorWaveFormDefault">#289FFF</color>
+    <color name="colorWaveFormRecording">#FF1E1E</color>
+</resources>
