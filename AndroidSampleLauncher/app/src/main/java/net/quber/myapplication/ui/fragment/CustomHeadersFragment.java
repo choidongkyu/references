@@ -107,6 +107,7 @@ public class CustomHeadersFragment extends HeadersSupportFragment {
         });
     }
 
+
     public void setHeaderAdapter() {
         mHeaderAdapter = new ArrayObjectAdapter();
 

@@ -1,32 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_height="match_parent"
-    android:layout_width="match_parent">
+<net.quber.myapplication.CustomFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main_activity"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-    <LinearLayout
+
+    <FrameLayout
+        android:id="@+id/header_container"
+        android:layout_width="250dp"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_03" />
+
+    <FrameLayout
+        android:id="@+id/rows_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <FrameLayout
-            android:id="@+id/header_container"
-            android:layout_width="250dp"
-            android:layout_height="match_parent"
-            android:background="@drawable/bg_03"/>
-        <FrameLayout
-            android:id="@+id/rows_container"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/transparent_background" />
-    </LinearLayout>
+        android:layout_height="match_parent"
+        android:background="@color/transparent_background"
+        android:layout_marginLeft="250dp"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="right"
-        android:text="DemoLauncher"
-        android:textStyle="bold"
+        android:layout_marginTop="30dp"
         android:layout_marginRight="50dp"
-        android:layout_marginTop="50dp"
-        android:textSize="40sp"/>
+        android:text="DemoLauncher"
+        android:textSize="40sp"
+        android:textStyle="bold" />
     <!--<fragment
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/main_browse_fragment"
@@ -36,4 +36,4 @@
         tools:context=".MainActivity"
         tools:deviceIds="tv"
         tools:ignore="MergeRootFrame" />-->
-</FrameLayout>
+</net.quber.myapplication.CustomFrameLayout>
